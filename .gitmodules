@@ -1,0 +1,6 @@
+[submodule "HAS_Backend"]
+	path = HAS_Backend
+	url = https://github.com/SamuelLabrador/HAS_Backend.git
+[submodule "HAS_Frontend"]
+	path = HAS_Frontend
+	url = https://github.com/SamuelLabrador/HAS_Frontend.git
