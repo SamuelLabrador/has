@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres
+  backend:
+    build: ./has_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes: 
+      - type: bind
+        source: ./has_backend
+        target: /backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  frontend:
+    build: ./has_frontend
+    command: npm start
+    volumes: 
+      - type: bind
+        source: ./has_frontend
+        target: /frontend
+      - node_modules:/frontend/node_modules
+    ports:
+      - "3000:3000"
+
+volumes:
+  node_modules:
