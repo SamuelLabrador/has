@@ -3,27 +3,56 @@ version: '3.3'
 services:
   db:
     image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgressql/data
+    networks: 
+      - main
+
   backend:
     build: ./has_backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes: 
-      - type: bind
-        source: ./has_backend
+      - type: volume
+        source: backend
         target: /backend
     ports:
       - "8000:8000"
     depends_on:
       - db
+    networks: 
+      - main
+  
   frontend:
     build: ./has_frontend
     command: npm start
     volumes: 
-      - type: bind
-        source: ./has_frontend
+      - type: volume
+        source: frontend
         target: /frontend
-      - node_modules:/frontend/node_modules
     ports:
       - "3000:3000"
+    networks: 
+      - main
+  
+  nginx:
+    image: nginx
+    container_name: production_nginx
+    volumes:
+      - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - 
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+      - db
+    networks: 
+      - main
 
 volumes:
-  node_modules:
+  postgres_data:
+  static_files:
+
+
+networks:
+  main:
