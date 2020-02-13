@@ -8,9 +8,8 @@ services:
 
   backend:
     build: ./has_backend
-    command: gunicorn has.wsgi --bind 0.0.0.0:8000
+    command: gunicorn has.wsgi --bind 0.0.0.0:8000 
     volumes: 
-      - backend:/backend
       - static_files:/var/www
     expose:
       - 8000
