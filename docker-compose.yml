@@ -10,22 +10,24 @@ services:
     build: ./has_backend
     command: gunicorn has.wsgi --bind 0.0.0.0:8000
     volumes: 
-      - backend:/backend
       - static_files:/var/www
     expose:
       - 8000
     depends_on:
       - db
+    env_file:
+      - ./config/backend/backend-production.env
   
   frontend:
     build: 
       context: ./has_frontend
       dockerfile: Dockerfile.prod
-    volumes: 
-      - static_files:/var/www
-    ports:
-      - "3000:3000"
-  
+    command: serve -s build -l 4000
+    expose:
+      - 4000
+    env_file:
+      - ./config/frontend/frontend-production.env
+          
   nginx:
     image: nginx
     container_name: production_nginx
@@ -43,3 +45,4 @@ volumes:
   postgres_data:
   static_files:
   backend:
+  frontend:
