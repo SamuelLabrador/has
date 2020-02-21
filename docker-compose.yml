@@ -10,7 +10,7 @@ services:
     build: ./has_backend
     command: gunicorn has.wsgi --bind 0.0.0.0:8000
     volumes: 
-      - static_files:/var/www
+      - static_files:/var/www/django-static
     expose:
       - 8000
     depends_on:
@@ -33,7 +33,7 @@ services:
     container_name: production_nginx
     volumes:
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - static_files:/var/www
+      - static_files:/var/www/django-static
     ports:
       - "80:80"
     depends_on:
