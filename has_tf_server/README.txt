@@ -4,4 +4,7 @@ Code for hosting the ML server
 
 apt-get install tensorflow-model-server
 
--- rest_api_port=8501
+
+To run server, run this command: 
+
+nohup tensorflow_model_server --rest_api_port=8502  --model_name=faster_rcnn --model_base_path="/tmp/faster_rcnn/" > log.txt &
