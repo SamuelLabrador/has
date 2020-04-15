@@ -5,11 +5,13 @@ services:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgressql/data
+    environment:
+      - POSTGRES_PASSWORD=password
 
   backend:
     build: 
       context: ./has_backend
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     command: gunicorn has.wsgi --bind 0.0.0.0:8000
     volumes: 
       - static_files:/var/www/django-static
