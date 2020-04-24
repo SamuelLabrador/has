@@ -1,0 +1,13 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: backend
+  labels:
+    app: has-backend
+    secure: disabled
+spec:
+  containers:
+    - name: backend
+      image: samuellabrador/has_backend
+      ports: 
+      - containerPort: 8000
