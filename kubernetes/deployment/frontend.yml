@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: has
+      tier: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels: 
+        app: has
+        tier: frontend
+    spec:
+      containers:
+        - name: frontend-pod
+          image: samuellabrador/has_frontend:latest
+          ports:
+            - containerPort: 4000

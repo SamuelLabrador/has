@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: has-deployment
+  labels:
+    app: has
+spec:
+  # replicas - defines how many pods need to be created
+  replicas: 1
+  
+  # selector - specifies how Kubernetes will find 
+  # the pods used for deployment
+  selector:
+    matchLabels:
+      app: has
+  
+  template:
+    metadata:
+      labels:
+        app: has
+  
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+      - name: frontend
+        image: samuellabrador/has_frontend
+        ports: 
+        - containerPort: 4000

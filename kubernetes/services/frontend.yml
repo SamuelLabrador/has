@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend
+spec: 
+  selector:
+    app: has
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 4000

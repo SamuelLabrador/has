@@ -1,0 +1,13 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: frontend
+  labels:
+    app: has-frontend
+    secure: disabled
+spec:
+  containers:
+    - name: frontend
+      image: samuellabrador/has_frontend
+      ports: 
+      - containerPort: 4000
