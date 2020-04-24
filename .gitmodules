@@ -1,6 +1,0 @@
-[submodule "has_frontend"]
-	path = has_frontend
-	url = https://github.com/SamuelLabrador/has_frontend.git
-[submodule "has_backend"]
-	path = has_backend
-	url = https://github.com/SamuelLabrador/has_backend.git

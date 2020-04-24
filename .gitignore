@@ -1,3 +1,5 @@
 *.env
 node_modules/
-
+*.sql
+has_frontend/
+has_backend/
